@@ -183,10 +183,10 @@ public class HomeController : Controller
         return Content(model);
     }
 
-    public IActionResult NullableTypesDemo()
+    public IActionResult NullableTypesDemo(int? id)
     {
         var model = "";
-        int? x = 10;
+        int? x = id;
         if (x.HasValue)
         {
             model = "x=" + Convert.ToString(x.Value);
@@ -196,13 +196,13 @@ public class HomeController : Controller
             model = "x=Undefined";
         }
 
-        int? c = null;
+        int? c = id;
 
         // d = c, unless c is null, in which case d = -1. 
         int d = c ?? -1;
 
-        int? e = null;
-        int? f = null;
+        int? e = id;
+        int? f = id;
 
         // g = e or f, unless e and f are both null, in which case g = -1.
         int g = e ?? f ?? -1;
