@@ -1,6 +1,7 @@
 ﻿using CSCI3110CSharpReview.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Text;
 using System.Text.Json;
 
 namespace CSCI3110CSharpReview.Controllers;
@@ -105,6 +106,23 @@ public class HomeController : Controller
         jaggedArray[0] = new int[4] { 1, 2, 3, 4 };
 
         return Content($"Array 1 [{a1str}] Array 2 [{a2str}] Array 3 [{a3str}]");
+    }
+
+    public IActionResult ArrayOfObjects()
+    {
+        // Create an array of 3 Employee references
+        Employee[] employees = new Employee[3];
+        employees[0] = new Employee() { Name = "Jabba" };
+        employees[1] = new Employee() { Name = "Jenny" };
+        employees[2] = new Employee() { Name = "Jessica" };
+
+        StringBuilder builder = new StringBuilder();
+        foreach( Employee employee in employees)
+        {
+            builder.Append(employee.Talk());
+            builder.Append(Environment.NewLine);
+        }
+        return Content(builder.ToString());
     }
 
     public IActionResult ImplicitTypeDemo()
